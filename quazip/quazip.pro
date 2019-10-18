@@ -2,6 +2,15 @@ TEMPLATE = lib
 CONFIG += qt warn_on
 QT -= gui
 
+
+include(user_config.pri)
+
+contains(QUAZIP_CONFIG,quazip_staticlib): CONFIG += staticlib
+DESTDIR = $${QUAZIP_DESTDIR}
+!equals(QUAZIP_ZLIB_HEADERS,): INCLUDEPATH += $${QUAZIP_ZLIB_HEADERS}
+!equals(QUAZIP_ZLIB_LIBS,):    LIBS += $${QUAZIP_ZLIB_LIBS}
+
+
 # Creating pkgconfig .pc file
 CONFIG += create_prl no_install_prl create_pc
 
